@@ -1,0 +1,19 @@
+<html>
+
+<body>
+    <!-- <h2> Olá <%= nome %> ! </h2> <!-- "<%" é um parâmetro do "ejs" -->
+
+     
+    <div class="tarefas">
+        <% for(let i = 0; i < tarefasList.length; i++) { %>
+
+            <!-- <p> Teste das tarefas </p> -->
+             <p> <%= tarefasList[i] %> </p> 
+
+        <% } %>
+    </div>
+    
+
+</body>
+
+</html>
