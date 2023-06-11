@@ -6,19 +6,30 @@ const app = express();
 // -- Para usar o arquivo HTML 
 app.engine('html',require('ejs').renderFile); // renderiza a engine pra html utilizando ejs
 app.set('view engine','html'); // seta a view engine para html
-app.use('/public', express.static(path.join(__dirname,'public'))); // diz que o diretório estático seja na pasta "public"
+app.use('/public', express.static(path.join(__dirname, 'public'))); // O diretório estático será na pasta "public"
 app.set('views', path.join(__dirname,'/views')); // aponta para a pasta "views"
 
 
-var tarefas = ['Arrumar o quarto','Comprar no mercado'];
+var tarefas = ['Arrumar o quarto','Comprar no mercado agora','Tarefa cabulosa 03'];
 
-// -- CONEXÃO
+// -- CONEXÃO e mostra as tarefas do ARRAY "tarefas"
 app.get('/',(req,res) => { 
     
     res.render('index',{tarefasList:tarefas}); 
 
-    //res.render('index',{nome:'Pablo Belusso'});
-    //res.send('A página foi carregado corretamente!')
+});
+
+
+// -- DELETA as "tarefas"
+app.get('/deletar/:id',(req,res) => { 
+    tarefas = tarefas.filter(function(val,index){
+        if (index != req.params.id){
+            return val;
+        }
+    })
+    
+    res.render('index',{tarefasList:tarefas}); 
+
 });
 
 
